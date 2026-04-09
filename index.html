@@ -1,262 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OnEMCL - My Payment</title>
+    <meta charset="UTF-8">
+    <title>OneMCL - Unsettled Charges</title>
+    <style>
+        :root {
+            --mcl-blue: #003366;
+            --mcl-gold: #cc9900;
+            --table-header: #cbd5a1;
+            --sidebar-bg: #f9f9f9;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #333;
+        }
 
-body{
-    background:#f3f3f3;
-}
+        /* Header Styling */
+        .top-banner {
+            background: linear-gradient(to bottom, #004080, #00264d);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 4px solid var(--mcl-gold);
+        }
 
-header{
-    background:linear-gradient(#2f6aa3,#1f4e7c);
-    color:white;
-    padding:12px 20px;
-    font-size:26px;
-    font-weight:bold;
-}
+        .logo-placeholder {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            font-style: italic;
+        }
 
-.container{
-    display:flex;
-}
+        .logo-placeholder span {
+            color: #ccc;
+            font-weight: normal;
+        }
 
-.sidebar{
-    width:220px;
-    background:#efefef;
-    border-right:1px solid #ccc;
-    min-height:100vh;
-}
+        /* Layout Container */
+        .wrapper {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
 
-.sidebar ul{
-    list-style:none;
-}
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 180px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid #ddd;
+            padding: 10px 0;
+        }
 
-.sidebar li{
-    padding:12px 15px;
-    border-bottom:1px solid #ddd;
-    font-size:14px;
-}
+        .menu-cat {
+            padding: 5px 10px;
+            color: #666;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
 
-.sidebar li.active{
-    background:#2c5e9e;
-    color:white;
-    font-weight:bold;
-}
+        .menu-item {
+            padding: 4px 10px 4px 25px;
+            cursor: pointer;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
 
-.content{
-    flex:1;
-    padding:25px 40px;
-}
+        .menu-item:hover {
+            color: #000;
+            text-decoration: underline;
+        }
 
-.title{
-    font-weight:bold;
-    margin-bottom:10px;
-}
+        .menu-item.active {
+            background-color: var(--mcl-blue);
+            color: white;
+        }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:14px;
-}
+        .icon {
+            margin-right: 8px;
+            font-size: 14px;
+        }
 
-th{
-    background:#c9c892;
-    padding:10px;
-    border:1px solid #aaa;
-}
+        /* Main Content Area */
+        .content {
+            flex: 1;
+            padding: 15px 25px;
+        }
 
-td{
-    padding:10px;
-    border:1px solid #ccc;
-}
+        .page-title-box {
+            background-color: #fdf5d9;
+            border: 1px solid #e6dbb9;
+            padding: 4px 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
 
-.reference{
-    color:#1a5cc8;
-    text-decoration:underline;
-}
+        /* Table Styling */
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
 
-.total-row{
-    background:#eaeaea;
-    font-weight:bold;
-}
+        .payment-table th {
+            background-color: var(--table-header);
+            border: 1px solid #999;
+            padding: 6px;
+            font-weight: normal;
+        }
 
-.total-box{
-    margin-top:15px;
-    font-size:14px;
-}
+        .payment-table td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+        }
 
-.total-box input{
-    padding:5px;
-    width:120px;
-    margin-left:10px;
-}
+        .text-left { text-align: left !important; }
+        .text-right { text-align: right !important; }
 
-.note{
-    margin-top:20px;
-    font-size:13px;
-    font-weight:bold;
-}
+        .total-row {
+            background-color: #eee;
+            font-weight: bold;
+        }
 
-.terms{
-    margin-top:15px;
-    font-size:13px;
-    line-height:1.6;
-}
+        /* Inputs */
+        .payable-box {
+            text-align: center;
+            margin: 20px 0;
+        }
 
-.terms h3{
-    margin-bottom:8px;
-}
+        .payable-box input {
+            width: 80px;
+            text-align: right;
+            border: 1px solid #888;
+            padding: 2px;
+        }
 
-.terms ul{
-    padding-left:18px;
-}
+        /* Terms and Conditions Section */
+        .terms-container {
+            font-size: 11px;
+            line-height: 1.4;
+            color: #000;
+        }
 
-.terms li{
-    margin-bottom:8px;
-}
+        .terms-header {
+            font-weight: bold;
+            margin: 15px 0 5px 0;
+        }
 
-</style>
+        .terms-list {
+            padding-left: 15px;
+            margin: 0;
+        }
+
+        .terms-list li {
+            margin-bottom: 12px;
+            list-style-type: disc;
+        }
+
+        .policy-tag {
+            font-weight: bold;
+        }
+
+        .agreement-row {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-OnEMCL
-</header>
-
-<div class="container">
-
-<div class="sidebar">
-<ul>
-<li>My Home</li>
-<li>Profile</li>
-<li>My Grades (College)</li>
-<li>My Schedule</li>
-<li>My Curriculum</li>
-<li>My Mail</li>
-<li>My Password Reset</li>
-<li>Enrollment</li>
-<li>Manage Course</li>
-<li>Manage Section</li>
-<li>Print GSA</li>
-<li>Bills & Payments</li>
-<li class="active">Unsettled Charges</li>
-<li>Payment History</li>
-<li>Bukas</li>
-<li>Services</li>
-<li>Concern/Feedback</li>
-<li>Sign Out</li>
-</ul>
+<div class="top-banner">
+    <div class="logo-placeholder">OnE<span>MCL</span></div>
 </div>
 
-<div class="content">
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="menu-cat">🏠 My Home</div>
+        
+        <div class="menu-cat">👤 Profile</div>
+        <div class="menu-item">My Grades (College)</div>
+        <div class="menu-item">My Schedule</div>
+        <div class="menu-item">My Curriculum</div>
+        <div class="menu-item">My Mail</div>
+        <div class="menu-item">My Password Reset</div>
 
-<div class="title">My Payment</div>
+        <div class="menu-cat">📝 Enrollment</div>
+        <div class="menu-item">Manage Course</div>
+        <div class="menu-item">Manage Section</div>
+        <div class="menu-item">Print GSA</div>
 
-<table>
-<thead>
-<tr>
-<th>SY-Term</th>
-<th>Description</th>
-<th>Date Charged</th>
-<th>Reference Number</th>
-<th>Amount</th>
-<th>Select</th>
-</tr>
-</thead>
+        <div class="menu-cat">💳 Bills & Payments</div>
+        <div class="menu-item active">Unsettled Charges</div>
+        <div class="menu-item">Payment History</div>
+        <div class="menu-item">Bukas</div>
+    </div>
 
-<tbody>
+    <div class="content">
+        <div class="page-title-box">My Payment</div>
 
-<tr>
-<td>2025 - 3</td>
-<td>MATRICULATION FEE INITIAL PAYMENT</td>
-<td>04/10/2026</td>
-<td class="reference">1007147</td>
-<td>6,766.85</td>
-<td><input type="checkbox"></td>
-</tr>
+        <table class="payment-table">
+            <thead>
+                <tr>
+                    <th>SY-Term</th>
+                    <th>Description</th>
+                    <th>Date Charged</th>
+                    <th>Reference Number</th>
+                    <th>Amount</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025 - 3</td>
+                    <td class="text-left">MATRICULATION FEE INITIAL PAYMENT</td>
+                    <td>04/10/2026</td>
+                    <td><a href="#">1007147</a></td>
+                    <td>6,766.85</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>2025 - 3</td>
+                    <td class="text-left">MATRICULATION FEE PRELIM PAYMENT</td>
+                    <td>04/10/2026</td>
+                    <td><a href="#">1007147</a></td>
+                    <td>13,533.70</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>2025 - 3</td>
+                    <td class="text-left">MATRICULATION FEE FINAL PAYMENT</td>
+                    <td>04/10/2026</td>
+                    <td><a href="#">1007147</a></td>
+                    <td>13,533.70</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4" class="text-right">Total:</td>
+                    <td>33,834.25</td>
+                    <td><button style="font-size: 10px;">Select All</button></td>
+                </tr>
+            </tbody>
+        </table>
 
-<tr>
-<td>2025 - 3</td>
-<td>MATRICULATION FEE PRELIM PAYMENT</td>
-<td>04/10/2026</td>
-<td class="reference">1007147</td>
-<td>13,533.70</td>
-<td><input type="checkbox"></td>
-</tr>
+        <div class="payable-box">
+            Total Amount Payable: <input type="text" value="0.00">
+        </div>
 
-<tr>
-<td>2025 - 3</td>
-<td>MATRICULATION FEE FINAL PAYMENT</td>
-<td>04/10/2026</td>
-<td class="reference">1007147</td>
-<td>13,533.70</td>
-<td><input type="checkbox"></td>
-</tr>
+        <div class="terms-container">
+            <p><strong>**Note: You have to read the terms and conditions before you proceed with the payment.**</strong></p>
+            
+            <div class="terms-header">MCL e-CM (Terms and Conditions)</div>
+            <ul class="terms-list">
+                <li>Full assessments with outstanding balances beyond enrollment period is automatically converted to INSTALLMENT basis.</li>
+                <li>For all off-term courses with only one section that starts with "T", the tuition fee for such courses shall be recomputed if the total number of enrolled students in said courses is below 15...</li>
+                <li><span class="policy-tag">REFUND POLICY</span> - The school follows the Refund Policy issued by CHED under Sec.100 of the 2008 MORPHE. Please refer to the Student's Handbook for details...</li>
+                <li><span class="policy-tag">PENALTY</span> - A penalty fee of 1% per month will be charged on all outstanding balances computed based on the number of months the account has been outstanding...</li>
+                <li><span class="policy-tag">REVISION OF COURSE LOAD</span> - A student desiring to revise his course load (adding or dropping of courses) must do so during the period immediately following enrollment...</li>
+                <li><span class="policy-tag">CANCELLATION OF ENROLLMENT</span> - Any Student desiring to discontinue his studies during the term should immediately notify the Registrar's Office in writing...</li>
+            </ul>
 
-<tr class="total-row">
-<td colspan="4"></td>
-<td>Total: 33,834.25</td>
-<td><button>Select All</button></td>
-</tr>
-
-</tbody>
-</table>
-
-<div class="total-box">
-Total Amount Payable:
-<input type="text" value="0.00">
-</div>
-
-<div class="note">
-**Note: You have to read the terms and conditions before you proceed with the payment.**
-</div>
-
-<div class="terms">
-
-<h3>MCL e-CM (Terms and Conditions)</h3>
-
-<ul>
-
-<li>
-Full assessments with outstanding balances beyond enrollment period is automatically converted to INSTALLMENT basis.
-</li>
-
-<li>
-For all off-term courses with only one section that starts with "T", the tuition fee for such courses shall be recomputed if the total number of enrolled students in said courses is below 15.
-</li>
-
-<li>
-<b>REFUND POLICY</b> - The school follows the Refund Policy issued by CHED under Sec.100 of the 2008 MORPHE. Please refer to the Student's Handbook for details.
-</li>
-
-<li>
-<b>PENALTY</b> - A penalty fee of 1% per month will be charged on all outstanding balances computed based on the number of months the account has been outstanding.
-</li>
-
-<li>
-<b>REVISION OF COURSE LOAD</b> - A student desiring to revise his course load (adding or dropping of courses) must do so during the period immediately following enrollment.
-</li>
-
-<li>
-<b>CANCELLATION OF ENROLLMENT</b> - Any student desiring to discontinue his studies during the term should immediately notify the Registrar's Office in writing.
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
+            <div class="agreement-row">
+                <input type="checkbox" id="agree">
+                <label for="agree"><i>I agree to the Terms and Conditions.</i></label>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
