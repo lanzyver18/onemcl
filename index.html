@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnEMCL - My Payment</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f3f3f3;
+}
+
+header{
+    background:linear-gradient(#2f6aa3,#1f4e7c);
+    color:white;
+    padding:12px 20px;
+    font-size:26px;
+    font-weight:bold;
+}
+
+.container{
+    display:flex;
+}
+
+.sidebar{
+    width:220px;
+    background:#efefef;
+    border-right:1px solid #ccc;
+    min-height:100vh;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:12px 15px;
+    border-bottom:1px solid #ddd;
+    font-size:14px;
+}
+
+.sidebar li.active{
+    background:#2c5e9e;
+    color:white;
+    font-weight:bold;
+}
+
+.content{
+    flex:1;
+    padding:25px 40px;
+}
+
+.title{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+
+th{
+    background:#c9c892;
+    padding:10px;
+    border:1px solid #aaa;
+}
+
+td{
+    padding:10px;
+    border:1px solid #ccc;
+}
+
+.reference{
+    color:#1a5cc8;
+    text-decoration:underline;
+}
+
+.total-row{
+    background:#eaeaea;
+    font-weight:bold;
+}
+
+.total-box{
+    margin-top:15px;
+    font-size:14px;
+}
+
+.total-box input{
+    padding:5px;
+    width:120px;
+    margin-left:10px;
+}
+
+.note{
+    margin-top:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.terms{
+    margin-top:15px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.terms h3{
+    margin-bottom:8px;
+}
+
+.terms ul{
+    padding-left:18px;
+}
+
+.terms li{
+    margin-bottom:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+OnEMCL
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+<ul>
+<li>My Home</li>
+<li>Profile</li>
+<li>My Grades (College)</li>
+<li>My Schedule</li>
+<li>My Curriculum</li>
+<li>My Mail</li>
+<li>My Password Reset</li>
+<li>Enrollment</li>
+<li>Manage Course</li>
+<li>Manage Section</li>
+<li>Print GSA</li>
+<li>Bills & Payments</li>
+<li class="active">Unsettled Charges</li>
+<li>Payment History</li>
+<li>Bukas</li>
+<li>Services</li>
+<li>Concern/Feedback</li>
+<li>Sign Out</li>
+</ul>
+</div>
+
+<div class="content">
+
+<div class="title">My Payment</div>
+
+<table>
+<thead>
+<tr>
+<th>SY-Term</th>
+<th>Description</th>
+<th>Date Charged</th>
+<th>Reference Number</th>
+<th>Amount</th>
+<th>Select</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>2025 - 3</td>
+<td>MATRICULATION FEE INITIAL PAYMENT</td>
+<td>04/10/2026</td>
+<td class="reference">1007147</td>
+<td>6,766.85</td>
+<td><input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>2025 - 3</td>
+<td>MATRICULATION FEE PRELIM PAYMENT</td>
+<td>04/10/2026</td>
+<td class="reference">1007147</td>
+<td>13,533.70</td>
+<td><input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>2025 - 3</td>
+<td>MATRICULATION FEE FINAL PAYMENT</td>
+<td>04/10/2026</td>
+<td class="reference">1007147</td>
+<td>13,533.70</td>
+<td><input type="checkbox"></td>
+</tr>
+
+<tr class="total-row">
+<td colspan="4"></td>
+<td>Total: 33,834.25</td>
+<td><button>Select All</button></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="total-box">
+Total Amount Payable:
+<input type="text" value="0.00">
+</div>
+
+<div class="note">
+**Note: You have to read the terms and conditions before you proceed with the payment.**
+</div>
+
+<div class="terms">
+
+<h3>MCL e-CM (Terms and Conditions)</h3>
+
+<ul>
+
+<li>
+Full assessments with outstanding balances beyond enrollment period is automatically converted to INSTALLMENT basis.
+</li>
+
+<li>
+For all off-term courses with only one section that starts with "T", the tuition fee for such courses shall be recomputed if the total number of enrolled students in said courses is below 15.
+</li>
+
+<li>
+<b>REFUND POLICY</b> - The school follows the Refund Policy issued by CHED under Sec.100 of the 2008 MORPHE. Please refer to the Student's Handbook for details.
+</li>
+
+<li>
+<b>PENALTY</b> - A penalty fee of 1% per month will be charged on all outstanding balances computed based on the number of months the account has been outstanding.
+</li>
+
+<li>
+<b>REVISION OF COURSE LOAD</b> - A student desiring to revise his course load (adding or dropping of courses) must do so during the period immediately following enrollment.
+</li>
+
+<li>
+<b>CANCELLATION OF ENROLLMENT</b> - Any student desiring to discontinue his studies during the term should immediately notify the Registrar's Office in writing.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
